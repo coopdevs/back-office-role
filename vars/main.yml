@@ -1,2 +1,6 @@
 ---
 # vars file for ansible-role
+somoffice_role_hard_deps:
+  - git
+  - npm
+date: "{{ ansible_date_time.iso8601_basic_short }}"

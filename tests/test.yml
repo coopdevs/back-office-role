@@ -1,5 +1,13 @@
 ---
-- hosts: localhost
-  remote_user: root
-  roles:
-    - ansible-role
+- hosts: all
+  tasks:
+    - name: Test role
+      import_tasks: "../tasks/main.yml"
+  handlers:
+    - name: Remove temporal folder
+      delegate_to: localhost
+      file:
+        path: "{{ somoffice_role_local_path }}"
+        state: absent
+      tags:
+        - sombackoffice

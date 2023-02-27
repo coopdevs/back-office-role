@@ -1,0 +1,49 @@
+---
+- name: Clone the backoffice repo at specific tag/commit
+  git:
+    repo: "{{ somoffice_role_backoffice_repo }}"
+    dest: "{{ somoffice_role_local_path }}"
+    version: "{{ somoffice_role_backoffice_version }}"
+    force: true
+  register: gitresult
+  tags:
+    - sombackoffice
+    - build
+
+- name: Create a variable with the commit ref
+  set_fact:
+    somoffice_role_backoffice_named_deploy:
+      "{{ somoffice_role_backoffice_named_deploy | default('')+item }}/"
+  with_items:
+    - "{{ somoffice_role_backoffice_version }}"
+    - "{{ gitresult.after }}"
+    - "{{ date }}"
+  tags:
+    - sombackoffice
+    - build
+
+- name: Render the template .env
+  template:
+    src: ".env.j2"
+    dest: "{{ somoffice_role_local_path }}/.env"
+    mode: 0600
+  tags:
+    - sombackoffice
+    - build
+
+- name: Install npm dependencies
+  npm:
+    path: "{{ somoffice_role_local_path }}"
+    state: present
+  tags:
+    - sombackoffice
+    - build
+
+- name: Build the backoffice
+  npm:
+    path: "{{ somoffice_role_local_path }}"
+    state: present
+    production: true
+  tags:
+    - sombackoffice
+    - build

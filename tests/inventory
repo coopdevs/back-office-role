@@ -1,2 +1,2 @@
-localhost
+somoffice-role.local ansible_user=root
 

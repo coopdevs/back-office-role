@@ -1,2 +1,14 @@
 ---
 # defaults file for ansible-role
+somoffice_role_backoffice_repo:
+ "https://git.coopdevs.org/coopdevs/comunitats-energetiques/somoffice/back-office"
+somoffice_role_local_path: "./build/backoffice"
+somoffice_role_backoffice_version: "main"
+somoffice_remote_base_path: "/opt/somoffice"
+somoffice_role_deploy_path:
+ "{{ somoffice_remote_base_path }}/{{ somoffice_role_backoffice_named_deploy }}"
+# env variables
+somoffice_role_env_host: "https://example.coop"
+somoffice_role_env_keycloak: "https://example.coop/auth"
+somoffice_role_env_kc_realm: "somoffice"
+somoffice_role_env_kc_client: "client id"

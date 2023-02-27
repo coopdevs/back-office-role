@@ -1,0 +1,8 @@
+---
+# check that all requirements are installed
+- name: check that all requirements are installed
+  command: which {{ item }}
+  with_list: "{{ somoffice_role_hard_deps }}"
+  register: which
+  failed_when: which.rc != 0
+  changed_when: false
