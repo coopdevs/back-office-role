@@ -8,17 +8,19 @@ Follow [Installing and using pyenv](https://github.com/coopdevs/handbook/wiki/In
 
 ```sh
 pyenv install 3.8.12
-pyenv virtualenv 3.8.12 role-name
+pyenv virtualenv 3.8.12 back_office_role
+pyenv activate back_office_role
+pip install -r requirements.txt
 ```
 
-### Configure ansible environment
-
-You will need Ansible on your machine to run the playbooks, follow the steps below to install it.
-
-```sh
-pyenv exec pip install -r requirements.txt
-ansible-galaxy install -r requirements.yml -f
+### Configure development environment
+You can edit the `.devenv` file if you want to override the default configuration.
+```ini
+URL=somoffice-role.local
+USR=root
+DIST=focal
 ```
+The root user in devenv will have your ssh public key.
 
 ### Install pre-commit hooks
 
