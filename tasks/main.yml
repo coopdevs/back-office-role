@@ -1,2 +1,29 @@
 ---
 # tasks file for ansible-role
+
+- name: Prepare enviroment
+  ansible.builtin.include_tasks:
+    file: "prepare.yml"
+  args:
+    apply:
+      delegate_to: localhost
+  tags:
+    - prepare
+    - sombackoffice
+
+- name: Run backoffice tasks
+  ansible.builtin.include_tasks:
+    file: "backoffice.yml"
+  args:
+    apply:
+      delegate_to: localhost
+  tags:
+    - build
+    - sombackoffice
+
+- name: Upload new version
+  ansible.builtin.include_tasks:
+    file: "upload.yml"
+  tags:
+    - upload
+    - sombackoffice

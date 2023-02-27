@@ -1,2 +1,10 @@
 ---
 # handlers file for ansible-role
+
+- name: Remove temporal folder
+  delegate_to: localhost
+  ansible.builtin.file:
+    path: "{{ somoffice_role_local_path }}"
+    state: absent
+  tags:
+    - sombackoffice
