@@ -13,11 +13,11 @@
 - name: Create a variable with the commit ref
   ansible.builtin.set_fact:
     somoffice_role_backoffice_named_deploy:
-      "{{ somoffice_role_backoffice_named_deploy | default('') + item }}/"
+      "{{ somoffice_role_backoffice_named_deploy | default('') + '/' + item }}"
   with_items:
     - "{{ somoffice_role_backoffice_version }}"
-    - "{{ gitresult.after }}"
     - "{{ date }}"
+    - "{{ gitresult.after }}"
   tags:
     - sombackoffice
     - build
