@@ -1,0 +1,10 @@
+# File created with devenv init command
+
+NAME="somoffice-role"
+DISTRIBUTION="ubuntu"
+RELEASE="focal"
+ARCH="amd64"
+HOST="$NAME.local"
+
+# Select the python interpeter python2.7 or python3
+PYTHON_INTERPRETER=python3
