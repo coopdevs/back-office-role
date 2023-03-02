@@ -13,3 +13,5 @@ galaxy_info:
         - all
 
   galaxy_tags: ["npm", "env", "somoffice"]
+dependencies:
+  - role: ansistrano.deploy
