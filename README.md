@@ -10,15 +10,17 @@ This role will:
 - Render the `.env` file.
 - Build the app.
 - Ensure you have all the dependencies installed in the development environment.
-- Deploy the app to the development environment.
-- Backup any existing deployments.
-- Create a symbolic link from `$base_path/current` to uploaded version.
+- Deploy the app using capistrano strategy.
 - Delete local temporary files.
 
 Requirements
 ------------
 Hard dependencies are declared in `somoffice_role_hard_deps` var (see `vars/main.yml`).
 They are checked by main task prior to role execution.
+
+Dependencies
+-------------
+- [ansistrano.deploy](https://github.com/ansistrano/deploy)
 
 Role Variables
 --------------
